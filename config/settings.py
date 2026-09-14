@@ -10,34 +10,27 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
-<<<<<<< HEAD
+
 from dotenv import load_dotenv
 from pathlib import Path
 
 load_dotenv()
-=======
-from pathlib import Path
-from pathlib import load_dotenv
->>>>>>> dde8b07d1c247207e20b19dc852af07e613d2cd4
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-<<<<<<< HEAD
 
-=======
 load_dotenv()
->>>>>>> dde8b07d1c247207e20b19dc852af07e613d2cd4
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-<<<<<<< HEAD
+
 SECRET_KEY = os.getenv ("SECRET_KEY")
 
-=======
-SECRET_KEY = os.getenv("SECRET_KEY")
->>>>>>> dde8b07d1c247207e20b19dc852af07e613d2cd4
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -91,8 +84,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "HOST": os.getenv("DB_HOST"),
+        "PORT": os.getenv("DB_PORT"),
     }
 }
 
@@ -132,10 +129,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-<<<<<<< HEAD
+
 STATICFILES_DIRS = [BASE_DIR / "blog"/ "static"]
-=======
->>>>>>> dde8b07d1c247207e20b19dc852af07e613d2cd4
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
