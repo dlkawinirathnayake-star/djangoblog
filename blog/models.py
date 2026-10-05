@@ -21,6 +21,11 @@ class Post(models.Model):
         ("draft", "Draft"),
         ("published", "Published"),
     ]
+    cover_image = models.ImageField(
+    upload_to="post_covers/",
+    blank=True,
+    null=True
+)
 
     category = models.ForeignKey(
         Category,

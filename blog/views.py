@@ -1,11 +1,14 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
+
+from blog.forms import PostForm
 from .models import Post, Category
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 class PostUpdateView(UpdateView):
     model = Post
+    form_class = PostForm
     fields = ["title", "content", "category", "tags", "status"]
     template_name = "blog/post_form.html"
 
@@ -20,6 +23,7 @@ class PostDeleteView(DeleteView):
 
 class PostCreateView(CreateView):
     model = Post
+    form_class = PostForm
     fields = ["title", "content", "category", "tags", "status"]
     template_name = "blog/post_form.html"
 
