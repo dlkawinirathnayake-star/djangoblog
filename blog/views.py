@@ -9,11 +9,13 @@ from django.urls import reverse_lazy
 class PostUpdateView(UpdateView):
     model = Post
     form_class = PostForm
-    fields = ["title", "content", "category", "tags", "status"]
     template_name = "blog/post_form.html"
 
     def get_success_url(self):
-        return reverse_lazy("post_detail", kwargs={"slug": self.object.slug})
+        return reverse_lazy(
+            "post_detail",
+            kwargs={"slug": self.object.slug}
+        )
 
 
 class PostDeleteView(DeleteView):
@@ -24,11 +26,13 @@ class PostDeleteView(DeleteView):
 class PostCreateView(CreateView):
     model = Post
     form_class = PostForm
-    fields = ["title", "content", "category", "tags", "status"]
     template_name = "blog/post_form.html"
 
     def get_success_url(self):
-        return reverse_lazy("post_detail", kwargs={"slug": self.object.slug})
+        return reverse_lazy(
+            "post_detail",
+            kwargs={"slug": self.object.slug}
+        )
 
 class PostListView(ListView):
     model = Post
