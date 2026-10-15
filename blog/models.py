@@ -1,6 +1,8 @@
+
 from django.db import models
 from django.utils.text import slugify
 from PIL import Image
+from django.conf import settings
 
 
 class Category(models.Model):
@@ -27,6 +29,12 @@ class Post(models.Model):
         upload_to="post_covers/",
         blank=True,
         null=True
+    )
+
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="posts"
     )
 
     category = models.ForeignKey(
@@ -68,24 +76,33 @@ class Post(models.Model):
     )
 
     def save(self, *args, **kwargs):
-        # Create slug automatically
+        # Automatically create a unique slug
         if not self.slug:
-            self.slug = slugify(self.title)
+            base_slug = slugify(self.title) or "post"
+            slug = base_slug
+            counter = 1
+
+            while Post.objects.filter(slug=slug).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+
+            self.slug = slug
 
         # Save the post first
         super().save(*args, **kwargs)
 
-        # Resize cover image automatically
+        # Resize the cover image if necessary
         if self.cover_image:
             img_path = self.cover_image.path
-            img = Image.open(img_path)
 
-            if img.height > 800 or img.width > 800:
-                img.thumbnail((800, 800))
-                img.save(img_path)
+            with Image.open(img_path) as img:
+                if img.height > 800 or img.width > 800:
+                    img.thumbnail((800, 800))
+                    img.save(img_path)
 
     def __str__(self):
         return self.title
+
 
 
 # Create your models here.
