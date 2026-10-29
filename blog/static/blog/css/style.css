@@ -1,286 +1,523 @@
+/* ==============================
+   BLACK & GOLD LUXURY THEME
+   SRI LANKA TRAVEL BLOG
+============================== */
 
-/* Black & Gold Luxury Theme */
+:root {
+    --black: #0b0b0b;
+    --black-light: #171717;
+    --gold: #d4af37;
+    --gold-light: #f5d879;
+    --white: #ffffff;
+    --gray: #b8b8b8;
+}
 
 body {
-    background-color: #f5f2eb;
-    color: #252525;
+    margin: 0;
+    background: var(--black);
+    color: var(--white);
     font-family: "Segoe UI", Arial, sans-serif;
 }
 
+/* NAVBAR */
 .navbar {
-    background: #171717 !important;
-    padding: 18px 0;
-    border-bottom: 3px solid #c49a42;
+    background: #080808 !important;
+    padding: 18px 25px;
+    border-bottom: 1px solid var(--gold);
 }
 
 .navbar-brand {
-    color: #e6c77b !important;
+    color: var(--gold) !important;
     font-size: 1.6rem;
-    font-weight: bold;
+    font-weight: 800;
+    letter-spacing: 1px;
 }
 
 .navbar .nav-link {
-    color: #ffffff !important;
+    color: white !important;
     font-weight: 600;
     transition: 0.3s;
 }
 
 .navbar .nav-link:hover {
-    color: #e6c77b !important;
+    color: var(--gold) !important;
 }
 
-h1, h2, h3, h4, h5 {
-    color: #252525;
-    font-weight: 750;
-}
-
-.card {
-    background: #ffffff;
-    border: 1px solid #e5dcc8;
-    border-radius: 12px;
+/* HERO SECTION */
+.hero-section {
+    position: relative;
+    isolation: isolate;
     overflow: hidden;
-    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
-    transition: 0.3s;
+    min-height: 440px;
+    padding: 80px 20px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-bottom: 2px solid var(--gold);
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+/* Remove old single-photo background */
+.hero-section::before {
+    content: none !important;
+    animation: none !important;
 }
 
-.card-img-top {
-    width: 100%;
-    height: 230px;
-    object-fit: cover;
+/* AUTOMATIC SRI LANKA PHOTO SLIDESHOW */
+.hero-slideshow {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    background: #080808;
 }
 
-.card-title {
-    color: #8c6925;
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    background-size: 100% 100%;
+    background-position: center;
+    animation: sriLankaPhoto 24s infinite;
+    transform: scale(1.02);
+}
+
+/* 1. SIGIRIYA */
+.slide-one {
+    background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Sigiriya.jpg?width=2000");
+    animation-delay: 0s;
+}
+
+/* 2. NINE ARCH BRIDGE, ELLA */
+.slide-two {
+    background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Nine_arch_bridge,_Ella,_Sri_lanka.jpg?width=2000");
+    animation-delay: 3s;
+}
+
+/* 3. SRI LANKA BEACH */
+.slide-three {
+    background-image: url("https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1800&q=85");
+    background-size: cover;
+    background-position: center;
+    animation-delay: 6s;
+}
+
+/* 4. GREEN MOUNTAINS */
+.slide-four {
+    background-image: url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=85");
+    background-size: cover;
+    background-position: center;
+    animation-delay: 9s;
+}
+
+/* 5. GALLE LIGHTHOUSE */
+.slide-five {
+    background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Galle_Lighthouse.jpg?width=2000");
+    animation-delay: 12s;
+}
+
+/* 6. DIYALUMA WATERFALL */
+.slide-six {
+    background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Diyaluma_Falls.jpg?width=2000");
+    animation-delay: 15s;
+}
+
+/* 7. TEMPLE OF THE TOOTH, KANDY */
+.slide-seven {
+    background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Temple_of_the_Tooth,_Kandy.jpg?width=2000");
+    animation-delay: 18s;
+}
+
+/* 8. SRI LANKAN ELEPHANTS */
+.slide-eight {
+    background-image: url("https://commons.wikimedia.org/wiki/Special:FilePath/Sri_Lankan_elephants.jpg?width=2000");
+    animation-delay: 21s;
+}
+
+/* PHOTO TRANSITION */
+@keyframes sriLankaPhoto {
+    0% {
+        opacity: 0;
+        transform: scale(1);
+    }
+
+    4% {
+        opacity: 1;
+    }
+
+    20% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    25% {
+        opacity: 0;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* DARK OVERLAY */
+.hero-slideshow::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.40),
+        rgba(0, 0, 0, 0.72)
+    );
+}
+
+/* HERO TEXT */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    animation: luxuryFloat 6s ease-in-out infinite;
+}
+
+.hero-label {
+    color: var(--gold) !important;
+    font-size: 1rem !important;
     font-weight: bold;
+    letter-spacing: 4px;
 }
 
-.btn-primary {
-    background: #171717;
-    border: 1px solid #c49a42;
-    color: #e6c77b;
-    border-radius: 7px;
-    padding: 10px 20px;
+.hero-section h1 {
+    color: var(--gold-light) !important;
+    font-size: clamp(2.3rem, 5vw, 4rem) !important;
+    font-weight: 900;
+    margin: 20px 0;
+    text-shadow: 0 4px 20px #000;
+    background: linear-gradient(
+        110deg,
+        #b8860b 15%,
+        #fff1a8 35%,
+        #d4af37 50%,
+        #fff8d6 65%,
+        #b8860b 85%
+    );
+    background-size: 250% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: goldShine 5s linear infinite;
 }
 
-.btn-primary:hover {
-    background: #c49a42;
-    border-color: #c49a42;
-    color: #171717;
+.hero-section p {
+    color: #f2f2f2 !important;
+    font-size: 1.05rem !important;
+    line-height: 1.8;
 }
 
-.btn-success {
-    border-radius: 7px;
-}
-
-.btn-danger {
-    border-radius: 7px;
-}
-
-.category-pill {
-    display: inline-block;
-    background: #eee5d1;
-    color: #75551b;
-    padding: 6px 12px;
-    border-radius: 20px;
-}
-
-.tag-badge {
-    display: inline-block;
-    background: #292929;
-    color: #e6c77b;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.82rem;
-    margin: 3px;
-}
-
-form input,
-form textarea,
-form select {
-    border: 1px solid #d6c8a8 !important;
-    border-radius: 7px !important;
-    padding: 10px !important;
-}
-
-form input:focus,
-form textarea:focus,
-form select:focus {
-    border-color: #c49a42 !important;
-    box-shadow: 0 0 0 3px rgba(196, 154, 66, 0.15) !important;
-}
-
-.pagination .page-link {
-    color: #75551b;
-    border-radius: 5px;
-    margin: 0 3px;
-}
-
-.pagination .active .page-link {
-    background: #171717;
-    border-color: #c49a42;
-    color: #e6c77b;
-}
-
-footer {
-    background: #171717;
-    color: #eeeeee;
-    padding: 25px 0;
-    margin-top: 40px;
-    border-top: 3px solid #c49a42;
-}
-
-footer a {
-    color: #e6c77b;
-    text-decoration: none;
-}
-
-@media (max-width: 768px) {
-    .card-img-top {
-        height: 200px;
+/* FLOATING ANIMATION */
+@keyframes luxuryFloat {
+    0%, 100% {
+        transform: translateY(0);
     }
 
-    .navbar-brand {
-        font-size: 1.3rem;
+    50% {
+        transform: translateY(-9px);
     }
 }
 
-/* Read More button */
-.card a.btn,
-.card a.btn-primary,
-.card-body a {
-    background: #171717;
-    color: #e6c77b;
-    border: 1px solid #c49a42;
-    border-radius: 8px;
-    padding: 9px 18px;
-    text-decoration: none;
-    font-weight: 600;
-    display: inline-block;
+/* GOLD TEXT SHINE */
+@keyframes goldShine {
+    to {
+        background-position: 250% center;
+    }
+}
+
+/* GOLD BUTTONS */
+.hero-section .btn,
+.btn-warning {
+    background: var(--gold) !important;
+    color: #080808 !important;
+    border: 1px solid var(--gold) !important;
+    border-radius: 30px !important;
+    padding: 12px 28px !important;
+    font-weight: 800;
     transition: 0.3s;
 }
 
-.card a.btn:hover,
-.card a.btn-primary:hover,
-.card-body a:hover {
-    background: #c49a42;
-    color: #171717;
+.hero-section .btn {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 15px #d4af3725;
 }
 
-/* Category buttons - Black & Gold */
+.hero-section .btn:hover,
+.btn-warning:hover {
+    background: var(--gold-light) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px #d4af3750;
+}
+
+/* SECTION HEADINGS */
+.section-heading h2,
+.categories-section h2 {
+    color: var(--gold);
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.section-heading p,
+.categories-section p {
+    color: var(--gray);
+}
+
+/* CATEGORY BUTTONS */
 .btn-outline-success,
 .category-buttons a,
 .categories a,
 .category-list a {
-    background: #171717 !important;
-    color: #e6c77b !important;
-    border: 1px solid #c49a42 !important;
-    border-radius: 9px !important;
-    padding: 10px 16px !important;
+    background: transparent !important;
+    color: var(--gold) !important;
+    border: 1px solid var(--gold) !important;
+    border-radius: 25px !important;
+    padding: 9px 18px !important;
     text-decoration: none !important;
-    transition: all 0.3s ease;
+    transition: 0.3s;
 }
 
 .btn-outline-success:hover,
 .category-buttons a:hover,
 .categories a:hover,
 .category-list a:hover {
-    background: #c49a42 !important;
-    color: #171717 !important;
-    transform: translateY(-2px);
+    background: var(--gold) !important;
+    color: var(--black) !important;
 }
 
-
-
-/* Sri Lanka Hero Section - Compact Design */
-
-.hero-section,
-.hero,
-header.hero {
-    background:
-        linear-gradient(
-            135deg,
-            rgba(20, 35, 30, 0.88),
-            rgba(30, 25, 20, 0.55)
-        ),
-        url("https://images.unsplash.com/photo-1588598198321-9735fd5245b3?auto=format&fit=crop&w=1800&q=85")
-        center/cover no-repeat !important;
-
+/* BLOG CARDS */
+.card,
+.travel-card {
+    background: var(--black-light) !important;
     color: white !important;
-    padding: 30px 20px !important;
-    min-height: 0 !important;
-    text-align: center;
-    border-radius: 0 0 18px 18px;
-}
-
-.hero-section h1,
-.hero h1,
-header.hero h1 {
-    color: white !important;
-    font-size: clamp(1.7rem, 3vw, 2.4rem) !important;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    margin: 0 0 12px !important;
-    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
-}
-
-.hero-section p,
-.hero p,
-header.hero p {
-    color: #fff8e9 !important;
-    font-size: 0.95rem !important;
-    max-width: 700px;
-    margin: 0 auto 16px !important;
-    line-height: 1.6;
-}
-
-.hero-section .btn,
-.hero .btn,
-header.hero .btn {
-    background: #d6ad55 !important;
-    color: #20251f !important;
-    border: none !important;
-    border-radius: 25px !important;
-    padding: 8px 20px !important;
-    font-size: 0.9rem !important;
-    font-weight: 700;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid #3b321b !important;
+    border-radius: 15px !important;
+    overflow: hidden;
+    box-shadow: 0 5px 20px #0008;
     transition: 0.3s;
 }
 
-.hero-section .btn:hover,
-.hero .btn:hover,
-header.hero .btn:hover {
-    background: #f3d58b !important;
-    color: #20251f !important;
-    transform: translateY(-2px);
+.card:hover,
+.travel-card:hover {
+    transform: translateY(-7px);
+    border-color: var(--gold) !important;
+    box-shadow: 0 12px 30px #d4af3720;
 }
 
-/* Heading below hero */
-.hero-section + h2,
-.hero + h2 {
-    margin-top: 25px;
-    text-align: center;
-    color: #315c48;
-    font-size: 1.7rem;
+.card-img-top {
+    width: 100%;
+    height: 235px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 22px;
+}
+
+.card-title {
+    color: var(--gold) !important;
+    font-size: 1.25rem;
     font-weight: 800;
 }
 
+.card-text {
+    color: #dddddd !important;
+    line-height: 1.8;
+}
+
+.post-meta {
+    color: #aaa !important;
+    font-size: 0.85rem;
+    margin-top: auto;
+    padding-top: 15px;
+}
+
+/* CATEGORY BADGE */
+.category-badge,
+.category-pill {
+    background: #302713 !important;
+    color: var(--gold-light) !important;
+    border: 1px solid #66501e;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+/* TAGS */
+.tag-badge {
+    display: inline-block;
+    background: #292214;
+    color: var(--gold);
+    border: 1px solid #66501e;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin: 3px;
+}
+
+/* NO COVER IMAGE */
+.no-image {
+    height: 235px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #111, #403315);
+    color: var(--gold);
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+/* READ MORE AND OTHER BUTTONS */
+.btn-success,
+.btn-primary {
+    background: var(--gold) !important;
+    color: #080808 !important;
+    border: 1px solid var(--gold) !important;
+    border-radius: 8px !important;
+    font-weight: 800;
+    transition: 0.3s;
+}
+
+.btn-success:hover,
+.btn-primary:hover {
+    background: var(--gold-light) !important;
+    color: #000 !important;
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    border-radius: 8px;
+}
+
+/* FORMS */
+form input,
+form textarea,
+form select {
+    width: 100%;
+    max-width: 100%;
+    background: #171717 !important;
+    color: white !important;
+    border: 1px solid #66501e !important;
+    border-radius: 8px !important;
+    padding: 11px !important;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+    border-color: var(--gold) !important;
+    box-shadow: 0 0 0 3px #d4af3725 !important;
+    outline: none;
+}
+
+form label {
+    color: var(--gold-light);
+}
+
+/* PAGINATION */
+.pagination .page-link {
+    background: #171717;
+    color: var(--gold);
+    border: 1px solid #66501e;
+    margin: 0 4px;
+    border-radius: 7px;
+}
+
+.pagination .page-link:hover,
+.pagination .active .page-link {
+    background: var(--gold);
+    color: #000;
+    border-color: var(--gold);
+}
+
+/* FOOTER */
+footer {
+    background: #050505;
+    color: #ddd;
+    padding: 30px 0;
+    margin-top: 45px;
+    border-top: 2px solid var(--gold);
+}
+
+footer a {
+    color: var(--gold);
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--gold-light);
+}
+
+/* RESPONSIVE DESIGN */
 @media (max-width: 768px) {
-    .hero-section,
-    .hero,
-    header.hero {
-        padding: 24px 14px !important;
-        min-height: 0 !important;
+    .navbar {
+        padding: 13px 16px;
     }
 
-    .hero-section h1,
-    .hero h1,
-    header.hero h1 {
-        font-size: 1.7rem !important;
+    .hero-section {
+        min-height: 340px;
+        padding: 50px 18px !important;
+    }
+
+    .hero-section h1 {
+        font-size: 2.2rem !important;
+    }
+
+    .card-img-top,
+    .no-image {
+        height: 205px;
     }
 }
+
+/* GOLD ANIMATED BORDER */
+.hero-section::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    z-index: 3;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #d4af37,
+        #fff1a8,
+        #d4af37,
+        transparent
+    );
+    background-size: 200% 100%;
+    animation: borderShine 4s linear infinite;
+}
+
+@keyframes borderShine {
+    from {
+        background-position: 100% 0;
+    }
+
+    to {
+        background-position: -100% 0;
+    }
+}
+
+/* ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+    .hero-slide,
+    .hero-content,
+    .hero-section h1,
+    .hero-section::after {
+        animation: none !important;
+    }
+
+    .slide-one {
+        opacity: 1;
+    }
+}
+
+
